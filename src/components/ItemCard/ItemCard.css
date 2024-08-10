@@ -1,13 +1,18 @@
-.cards__list_container {
-}
-
 .cards__list_name {
   position: absolute;
+  margin-left: 140px;
+  background-color: #ffff;
+  /*font-weight: 700;*/
+  font-size: 16px;
+  line-height: 20px;
+  color: rgba(0, 0, 0, 0.6);
+  border-radius: 4px;
 }
 
 .cards__list_image {
-  object-fit: cover;
-  object-position: right top;
-  width: 328px;
-  height: 328px;
+  max-width: 328px;
+  max-height: 328px;
+  border-radius: 19px;
+  border: 1px solid;
+  color: rgba(0, 0, 0, 0.3);
 }
