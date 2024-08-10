@@ -1,17 +1,27 @@
-.cards__list_name {
-  position: absolute;
-  margin-left: 140px;
-  background-color: #ffff;
-  /*font-weight: 700;*/
-  font-size: 16px;
-  line-height: 20px;
-  color: rgba(0, 0, 0, 0.6);
-  border-radius: 4px;
+.card {
+  width: 323px;
+  height: 326px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
 }
 
-.cards__list_image {
-  max-width: 328px;
-  max-height: 328px;
+.card__name {
+  position: absolute;
+  top: 15px;
+  margin: 0;
+  background-color: #ffff;
+  padding: 2px 12px;
+  color: rgba(0, 0, 0, 0.6);
+  border-radius: 4px;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+}
+
+.card__image {
+  width: 100%;
   border-radius: 19px;
   border: 1px solid;
   color: rgba(0, 0, 0, 0.3);
