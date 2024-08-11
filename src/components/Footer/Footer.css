@@ -1,0 +1,9 @@
+.footer {
+  display: flex;
+  margin-top: 85px;
+  margin-bottom: 24px;
+}
+
+.Footer__year {
+  margin-left: auto;
+}
