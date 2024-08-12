@@ -11,11 +11,17 @@
 }
 
 .header__date-and-location {
+  font-family: "CabinetGrotesk-Bold", sans-serif;
+  font-size: 20px;
+  line-height: 24px;
   margin: 0;
   margin-top: 15px;
   font-size: 20px;
 }
 .header__add-clothes-btn {
+  font-family: "CabinetGrotesk-Bold", sans-serif;
+  font-size: 20px;
+  line-height: 24px;
   margin: 0 20px 0 auto;
   border: 0;
   font-size: 20px;
@@ -28,5 +34,8 @@
   font-size: 20px;
 }
 .header__username {
+  font-family: "CabinetGrotesk-Bold", sans-serif;
+  font-size: 20px;
+  line-height: 24px;
   margin: 0;
 }

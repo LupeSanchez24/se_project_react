@@ -3,7 +3,14 @@
   margin-top: 85px;
   margin-bottom: 24px;
 }
-
+.footer__author {
+  font-family: "CabinetGrotesk-Medium", sans-serif;
+  font-size: 16px;
+  line-height: 20px;
+}
 .Footer__year {
+  font-family: "CabinetGrotesk-Medium", sans-serif;
+  font-size: 16px;
+  line-height: 20px;
   margin-left: auto;
 }
