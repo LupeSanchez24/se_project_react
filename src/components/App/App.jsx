@@ -9,6 +9,13 @@ import ItemModal from "../ItemModal/ItemModal";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 
 function App() {
+  const [currentTemperatureUnit, handleToggleSwitchChange] = useState("C");
+
+  const handleChange = (e) => {
+    if (currentTemperatureUnit === "C") handleToggleSwitchChange("F");
+    if (currentTemperatureUnit === "F") handleToggleSwitchChange("C");
+  };
+
   const [weatherData, setWeatherData] = useState({
     type: "",
     temp: { F: 999 },
@@ -42,7 +49,12 @@ function App() {
   return (
     <div className="page">
       <div className="page__content">
-        <Header handleAddClick={handleAddClick} weatherData={weatherData} />
+        <Header
+          handleAddClick={handleAddClick}
+          weatherData={weatherData}
+          currentTemperatureUnit={currentTemperatureUnit}
+          handleChange={handleChange}
+        />
         <Main weatherData={weatherData} handleCardClick={handleCardClick} />
         <Footer />
       </div>
