@@ -6,7 +6,7 @@
 
 .switch__box {
   border-radius: 25px;
-  border: 2px solid #000;
+  border: 2px solid rgba(0, 0, 0, 0.5);
   width: 50px;
   height: 28px;
 
@@ -33,7 +33,7 @@
 }
 
 .switch__active {
-  color: #fff;
+  color: rgba(0, 0, 0, 0.5);
   font-size: 16px;
 }
 
@@ -42,6 +42,7 @@
   top: -10px;
   right: 8px;
   color: #f3f3f3;
+  font-family: "Cabinet Grotesk", arial;
 }
 
 .switch__temp-C {
@@ -49,4 +50,5 @@
   top: -10px;
   left: 8px;
   color: #f3f3f3;
+  font-family: "Cabinet Grotesk", arial;
 }

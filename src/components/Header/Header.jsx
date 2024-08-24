@@ -7,7 +7,7 @@ function Header({
   handleAddClick,
   weatherData,
   currentTemperatureUnit,
-  handleChange,
+  handleToggleSwitchChange,
 }) {
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
@@ -22,7 +22,7 @@ function Header({
       </p>
       <ToggleSwitch
         currentTemperatureUnit={currentTemperatureUnit}
-        handleChange={handleChange}
+        handleToggleSwitchChange={handleToggleSwitchChange}
       />
       <button
         onClick={handleAddClick}
