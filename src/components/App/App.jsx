@@ -24,11 +24,11 @@ function App() {
     if (currentTemperatureUnit === "F") setCurrentTemperatureUnit("C");
   };
 
-  console.log(currentTemperatureUnit);
+  //console.log(currentTemperatureUnit);
 
   const [weatherData, setWeatherData] = useState({
     type: "",
-    temp: { F: 999 },
+    temp: { F: 999, C: 999 },
     city: "",
   });
   const [activeModal, setActiveModal] = useState("");
@@ -52,6 +52,7 @@ function App() {
       .then((data) => {
         const filteredData = filterWeatherData(data);
         setWeatherData(filteredData);
+        console.log(filteredData);
       })
       .catch(console.error);
   }, []);
