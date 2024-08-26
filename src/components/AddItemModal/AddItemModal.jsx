@@ -1,14 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
 const AddItemModal = ({ activeModal, closeActiveModal, onAddItem, isOpen }) => {
+  const [name, setName] = useState("");
+  const handleNameChange = (e) => {
+    console.log(e.target.value);
+    setName(e.target.value);
+  };
+
+  const [imageUrl, setUrl] = useState("");
+  const handleUrlChange = (e) => {
+    console.log(e.target.value);
+    setUrl(e.target.value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onAddItem({ name, imageUrl });
+  };
+
   return (
     <ModalWithForm
       title="New garment"
       buttonText="Add garment"
       isOpen={isOpen}
       onClose={closeActiveModal}
-      onSubmit={onAddItem}
+      onSubmit={handleSubmit}
     >
       <label htmlFor="name" className="modal__label">
         Name {""}
@@ -17,6 +34,8 @@ const AddItemModal = ({ activeModal, closeActiveModal, onAddItem, isOpen }) => {
           className="modal__input"
           id="name"
           placeholder="Name"
+          value={name}
+          onChange={handleNameChange}
         ></input>
       </label>
       <label htmlFor="imageUrl" className="modal__label">
@@ -26,6 +45,8 @@ const AddItemModal = ({ activeModal, closeActiveModal, onAddItem, isOpen }) => {
           className="modal__input"
           id="imageUrl"
           placeholder="Image URL"
+          value={imageUrl}
+          onChange={handleUrlChange}
         ></input>
       </label>
       <fieldset className="modal__radio-buttons">

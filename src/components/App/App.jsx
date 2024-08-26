@@ -41,8 +41,8 @@ function App() {
     setActiveModal("");
   };
 
-  const onAddItem = (e) => {
-    console.log(e);
+  const onAddItem = (values) => {
+    console.log(values);
   };
 
   useEffect(() => {
