@@ -1,0 +1,24 @@
+.clothes-section__text {
+  display: flex;
+}
+
+.clothes-section__existed-items {
+  margin-right: 20px;
+  font-family: "CabinetGrotesk-Bold", sans-serif;
+  font-size: 20px;
+}
+
+.clothes-section__add-button {
+  border: none;
+  background-color: #f3f3f3;
+  font-family: "CabinetGrotesk-Bold", sans-serif;
+  font-size: 20px;
+}
+.clothes-section__items {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  gap: 21px;
+}
