@@ -11,7 +11,7 @@ import ItemModal from "../ItemModal/ItemModal";
 import AddItemModal from "../AddItemModal/AddItemModal.jsx";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext.js";
-import { getItems } from "../../utils/api.js";
+import { getItems, addNewItem } from "../../utils/api.js";
 
 function App() {
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
@@ -47,6 +47,15 @@ function App() {
 
   const onAddItem = (values) => {
     console.log(values);
+    addNewItem(values)
+      .then((data) => {
+        console.log("Received data from API:", data); // Logs the response data
+        setClothingItems([data, ...clothingItems]);
+      })
+      .catch((error) => {
+        console.error("Error adding item:", error);
+      });
+    closeActiveModal();
   };
 
   useEffect(() => {
