@@ -12,6 +12,7 @@ import AddItemModal from "../AddItemModal/AddItemModal.jsx";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext.js";
 import { getItems, addNewItem } from "../../utils/api.js";
+import DeleteModal from "../DeleteModal/DeleteModal.jsx";
 
 function App() {
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
@@ -39,6 +40,9 @@ function App() {
 
   const handleAddClick = () => {
     setActiveModal("add-garment");
+  };
+  const handleDeleteClick = () => {
+    setActiveModal("delete-modal");
   };
 
   const closeActiveModal = () => {
@@ -127,6 +131,13 @@ function App() {
           <ItemModal
             activeModal={activeModal}
             card={selectedCard}
+            handleCloseClick={closeActiveModal}
+            handleDeleteClick={handleDeleteClick}
+          />
+        )}
+        {activeModal === "delete-modal" && (
+          <DeleteModal
+            activeModal={activeModal}
             handleCloseClick={closeActiveModal}
           />
         )}

@@ -125,6 +125,12 @@
       "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRznj0ynVae7LqX0aHWS1648VI5lnPwyd2IMw&s",
       "weather": "hot",
       "_id": 20
+    },
+    {
+      "name": "dss",
+      "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRznj0ynVae7LqX0aHWS1648VI5lnPwyd2IMw&s",
+      "weather": "warm",
+      "_id": 21
     }
   ]
 }
