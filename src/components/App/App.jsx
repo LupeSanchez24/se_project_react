@@ -11,7 +11,7 @@ import ItemModal from "../ItemModal/ItemModal";
 import AddItemModal from "../AddItemModal/AddItemModal.jsx";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext.js";
-import { getItems, addNewItem } from "../../utils/api.js";
+import { getItems, addNewItem, deleteItem } from "../../utils/api.js";
 import DeleteModal from "../DeleteModal/DeleteModal.jsx";
 
 function App() {
@@ -41,8 +41,9 @@ function App() {
   const handleAddClick = () => {
     setActiveModal("add-garment");
   };
-  const handleDeleteClick = () => {
+  const handleDeleteClick = (card) => {
     setActiveModal("delete-modal");
+    setSelectedCard(card);
   };
 
   const closeActiveModal = () => {
@@ -55,6 +56,21 @@ function App() {
       .then((data) => {
         console.log("Received data from API:", data); // Logs the response data
         setClothingItems([data, ...clothingItems]);
+      })
+      .catch((error) => {
+        console.error("Error adding item:", error);
+      });
+    closeActiveModal();
+  };
+
+  const handleDeleteItem = () => {
+    deleteItem(selectedCard.id)
+      .then(() => {
+        const newClothingItems = clothingItems.filter(
+          (cardItem) => cardItem._id !== selectedCard.id
+        );
+        setClothingItems(newClothingItems);
+        setActiveModal("");
       })
       .catch((error) => {
         console.error("Error adding item:", error);
@@ -139,6 +155,7 @@ function App() {
           <DeleteModal
             activeModal={activeModal}
             handleCloseClick={closeActiveModal}
+            handleDeleteItem={handleDeleteItem}
           />
         )}
       </CurrentTemperatureUnitContext.Provider>

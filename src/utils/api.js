@@ -16,4 +16,13 @@ function addNewItem({ name, imageUrl, weather }) {
   });
 }
 
-export { getItems, addNewItem };
+function deleteItem(id) {
+  //debugger;
+  return fetch(`${baseUrl}/items/${id}`, {
+    method: "DELETE",
+    headers: { "Content-Type": "application/json" },
+  }).then((res) => {
+    return res.ok ? res.json() : Promise.reject(`Error: ${res.statusText}`);
+  });
+}
+export { getItems, addNewItem, deleteItem };

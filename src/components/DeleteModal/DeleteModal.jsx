@@ -1,7 +1,7 @@
 import "./DeleteModal.css";
 import close from "../../assets/close.svg";
 
-function DeleteModal({ activeModal, handleCloseClick }) {
+function DeleteModal({ activeModal, handleCloseClick, handleDeleteItem }) {
   return (
     <div
       className={`modal ${activeModal === "delete-modal" && "modal_opened"}`}
@@ -22,8 +22,15 @@ function DeleteModal({ activeModal, handleCloseClick }) {
           <p className="modal__question_warning">
             This action is irreversible.
           </p>
-          <button className="modal__question_confirm">Yes, delete them</button>
-          <button className="modal__question_cancel">Cancel</button>
+          <button
+            className="modal__question_confirm"
+            onClick={handleDeleteItem}
+          >
+            Yes, delete them
+          </button>
+          <button onClick={handleCloseClick} className="modal__question_cancel">
+            Cancel
+          </button>
         </div>
       </div>
     </div>
