@@ -50,7 +50,7 @@ function App() {
   };
 
   const onAddItem = (values) => {
-    console.log(values);
+    // console.log(values);
     addNewItem(values)
       .then((data) => {
         console.log("Received data from API:", data); // Logs the response data

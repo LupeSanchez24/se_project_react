@@ -43,6 +43,13 @@
   border-radius: 20px;
 }
 
+/* delete modal*/
+.modal__content_container {
+  max-width: 670px;
+  max-height: 280px;
+  padding-bottom: 60px;
+}
+
 .modal__form {
   display: flex;
   flex-direction: column;
@@ -62,6 +69,11 @@
   border: none;
   border-bottom: 1px solid #000000;
   margin-bottom: 24px;
+}
+
+.modal__input_error {
+  border: none;
+  border-bottom: 1px solid rgba(255, 0, 0, 1);
 }
 
 .modal__legend {
@@ -97,4 +109,61 @@
   color: #fff;
   border-radius: 4px;
   font-size: 16px;
+}
+
+.modal__error {
+  font-family: "CabinetGrotesk-Bold", sans-serif;
+  font-size: 16px;
+  line-height: 20px;
+  color: red;
+  margin-top: 4px;
+  font-size: 12px;
+  position: absolute;
+  margin-top: -25px;
+}
+
+.modal__error_weather {
+  margin-top: -20px;
+}
+
+/* delete modal*/
+
+.modal__question {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.modal__question_delete {
+  font-family: "CabinetGrotesk-Bold", sans-serif;
+  font-size: 20px;
+  line-height: 24px;
+  margin-bottom: 0;
+  margin-top: 30px;
+}
+
+.modal__question_warning {
+  font-family: "CabinetGrotesk-Bold", sans-serif;
+  font-size: 20px;
+  line-height: 24px;
+  margin-left: 20px;
+  margin-top: 0;
+}
+
+.modal__question_confirm {
+  font-family: "CabinetGrotesk-Bold", sans-serif;
+  font-size: 20px;
+  line-height: 24px;
+  border: none;
+  background-color: #fff;
+  color: rgba(255, 77, 0, 1);
+}
+
+.modal__question_cancel {
+  font-family: "CabinetGrotesk-Bold", sans-serif;
+  font-size: 20px;
+  line-height: 24px;
+  border: none;
+  background-color: #fff;
+  margin-top: 20px;
 }

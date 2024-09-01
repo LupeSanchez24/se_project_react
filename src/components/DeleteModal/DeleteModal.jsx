@@ -6,7 +6,11 @@ function DeleteModal({ activeModal, handleCloseClick, handleDeleteItem }) {
     <div
       className={`modal ${activeModal === "delete-modal" && "modal_opened"}`}
     >
-      <div className="modal__container ">
+      <div
+        className="modal__content 
+modal__content_container 
+ "
+      >
         <button
           onClick={handleCloseClick}
           type="button"
@@ -15,7 +19,7 @@ function DeleteModal({ activeModal, handleCloseClick, handleDeleteItem }) {
           <img src={close} alt="close-button" />
         </button>
 
-        <div className="modal_question">
+        <div className="modal__question">
           <h2 className="modal__question_delete">
             Are you sure you want to delete this item?
           </h2>

@@ -1,4 +1,4 @@
 .profile {
-  display: flex;
-  gap: 116px;
+  display: grid;
+  grid-template-columns: minmax(auto, 349px) auto;
 }
