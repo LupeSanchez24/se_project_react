@@ -101,6 +101,18 @@
       "imageUrl": "https://media.istockphoto.com/id/1358963450/vector/hand-drawn-icon-of-t-shirt-in-color-outline-symbol-vector-illustration-in-doodle-sketch-style.jpg?s=612x612&w=0&k=20&c=uXn2BKYX20KP60-E3GWAeT8rS0kRHhyuLyXRfZ7jySA=",
       "weather": "warm",
       "_id": 19
+    },
+    {
+      "name": "dsd",
+      "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRznj0ynVae7LqX0aHWS1648VI5lnPwyd2IMw&s",
+      "weather": "warm",
+      "_id": 20
+    },
+    {
+      "name": "ewe",
+      "imageUrl": "https://factorie.com.au/dw/image/v2/BBDS_PRD/on/demandware.static/-/Sites-catalog-master-factorie/default/dwc14ae467/5299216/5299216-01-2.jpg?sw=400&sh=600&sm=fit",
+      "weather": "cold",
+      "_id": 21
     }
   ]
 }

@@ -69,13 +69,12 @@ function App() {
           (cardItem) => cardItem._id !== selectedCard._id
         );
         setClothingItems(newClothingItems);
-        setSelectedCard(selectedCard);
+        setSelectedCard({});
+        closeActiveModal();
       })
       .catch((error) => {
         console.error("Error deleting item:", error);
       });
-
-    closeActiveModal();
   };
 
   useEffect(() => {
@@ -106,7 +105,7 @@ function App() {
           <Header
             handleAddClick={handleAddClick}
             weatherData={weatherData}
-            currentTemperatureUnit={currentTemperatureUnit}
+            // currentTemperatureUnit={currentTemperatureUnit}
             handleToggleSwitchChange={handleToggleSwitchChange}
           />
           <Routes>
@@ -127,6 +126,7 @@ function App() {
                 <Profile
                   onCardClick={handleCardClick}
                   clothingItems={clothingItems}
+                  onAddClick={handleAddClick}
                 />
               }
             />
