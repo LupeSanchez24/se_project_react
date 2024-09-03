@@ -19,6 +19,7 @@ function WeatherCard({ weatherData }) {
     weatherOption = filteredOptions[0];
   }
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
+  //console.log(weatherOption?.imageUrl);
 
   return (
     <section className="weather-card">

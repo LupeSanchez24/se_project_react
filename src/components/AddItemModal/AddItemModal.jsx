@@ -51,7 +51,7 @@ const AddItemModal = ({ activeModal, closeActiveModal, onAddItem, isOpen }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validateForm()) {
-      onAddItem({ name, imageUrl, weather, resetForm });
+      onAddItem({ name, imageUrl, weather }, resetForm);
     }
   };
 
