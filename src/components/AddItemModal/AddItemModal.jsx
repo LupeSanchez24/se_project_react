@@ -42,14 +42,16 @@ const AddItemModal = ({ activeModal, closeActiveModal, onAddItem, isOpen }) => {
     return isValid;
   };
 
+  const resetForm = () => {
+    setName("");
+    setUrl("");
+    setWeather("");
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validateForm()) {
-      onAddItem({ name, imageUrl, weather });
-      setName("");
-      setUrl("");
-      setWeather("");
-      closeActiveModal();
+      onAddItem({ name, imageUrl, weather, resetForm });
     }
   };
 

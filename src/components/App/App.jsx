@@ -49,17 +49,18 @@ function App() {
     setActiveModal("");
   };
 
-  const onAddItem = (values) => {
+  const onAddItem = (values, resetForm) => {
     // console.log(values);
     addNewItem(values)
       .then((data) => {
         console.log("Received data from API:", data); // Logs the response data
         setClothingItems([data, ...clothingItems]);
+        closeActiveModal();
+        resetForm();
       })
       .catch((error) => {
         console.error("Error adding item:", error);
       });
-    closeActiveModal();
   };
 
   const handleDeleteItem = () => {
