@@ -13,6 +13,7 @@ import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext.js";
 import { getItems, addNewItem, deleteItem } from "../../utils/api.js";
 import DeleteModal from "../DeleteModal/DeleteModal.jsx";
+import RegisterModal from "../RegisterModal/RegisterModal.jsx";
 
 function App() {
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
@@ -43,6 +44,9 @@ function App() {
   };
   const handleDeleteClick = () => {
     setActiveModal("delete-modal");
+  };
+  const handleSignupClick = () => {
+    setActiveModal("signup-modal");
   };
 
   const closeActiveModal = () => {
@@ -123,6 +127,7 @@ function App() {
         <div className="page__content">
           <Header
             handleAddClick={handleAddClick}
+            handleSignupClick={handleSignupClick}
             weatherData={weatherData}
             // currentTemperatureUnit={currentTemperatureUnit}
             handleToggleSwitchChange={handleToggleSwitchChange}
@@ -176,6 +181,13 @@ function App() {
             handleCloseClick={closeActiveModal}
             handleDeleteItem={handleDeleteItem}
             selectedCard={selectedCard}
+          />
+        )}
+        {activeModal === "signup-modal" && (
+          <RegisterModal
+            activeModal={activeModal}
+            closeActiveModal={closeActiveModal}
+            isOpen={activeModal === "signup-modal"}
           />
         )}
       </CurrentTemperatureUnitContext.Provider>

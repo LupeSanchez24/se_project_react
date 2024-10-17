@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 
 function Header({
   handleAddClick,
+  handleSignupClick,
   weatherData,
   currentTemperatureUnit,
   handleToggleSwitchChange,
@@ -34,6 +35,13 @@ function Header({
         className="header__add-clothes-btn"
       >
         + Add clothes
+      </button>
+      <button
+        onClick={handleSignupClick}
+        type="button"
+        className="header__signup-btn"
+      >
+        Signup
       </button>
       <Link to="/profile" className="header__link">
         <div className="header__user-container">
