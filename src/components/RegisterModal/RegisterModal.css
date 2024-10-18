@@ -1,0 +1,12 @@
+.modal__input_signup {
+  margin-top: 15px;
+}
+
+.modal__submit_signup {
+  color: #0000004d;
+  background-color: #fff;
+  position: absolute;
+  margin-left: 130px;
+  margin-top: 346px;
+  width: 80px;
+}

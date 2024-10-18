@@ -1,6 +1,7 @@
 import { useState } from "react";
 import close from "../../assets/close.svg";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
+import "./RegisterModal.css";
 
 const RegisterModal = ({ closeActiveModal, onAddItem, isOpen }) => {
   const [name, setName] = useState("");
@@ -72,7 +73,7 @@ const RegisterModal = ({ closeActiveModal, onAddItem, isOpen }) => {
 
   return (
     <ModalWithForm
-      title="signup"
+      title="Sign Up"
       buttonText="Sign Up"
       isOpen={isOpen}
       onClose={closeActiveModal}
@@ -82,7 +83,9 @@ const RegisterModal = ({ closeActiveModal, onAddItem, isOpen }) => {
         Email *
         <input
           type="text"
-          className={`modal__input ${errors.email ? "modal__input_error" : ""}`}
+          className={`modal__input modal__input_signup ${
+            errors.email ? "modal__input_error" : ""
+          }`}
           id="email"
           placeholder="Email"
           value={email}
@@ -94,7 +97,7 @@ const RegisterModal = ({ closeActiveModal, onAddItem, isOpen }) => {
         Password *
         <input
           type="text"
-          className={`modal__input ${
+          className={`modal__input modal__input_signup ${
             errors.password ? "modal__input_error" : ""
           }`}
           id="password"
@@ -108,10 +111,12 @@ const RegisterModal = ({ closeActiveModal, onAddItem, isOpen }) => {
       </label>
 
       <label htmlFor="name" className="modal__label">
-        Name
+        Name *
         <input
           type="text"
-          className={`modal__input ${errors.name ? "modal__input_error" : ""}`}
+          className={`modal__input modal__input_signup ${
+            errors.name ? "modal__input_error" : ""
+          }`}
           id="name"
           placeholder="Name"
           value={name}
@@ -120,10 +125,10 @@ const RegisterModal = ({ closeActiveModal, onAddItem, isOpen }) => {
         {errors.name && <span className="modal__error ">{errors.name}</span>}
       </label>
       <label htmlFor="avatarUrl" className="modal__label">
-        Avatar URL
+        Avatar URL *
         <input
           type="url"
-          className={`modal__input ${
+          className={`modal__input modal__input_signup ${
             errors.avatarUrl ? "modal__input_error" : ""
           }`}
           id="avatarUrl"
@@ -135,6 +140,10 @@ const RegisterModal = ({ closeActiveModal, onAddItem, isOpen }) => {
           <span className="modal__error  ">{errors.avatarUrl}</span>
         )}
       </label>
+      <button type="submit" className="modal__sumbit modal__submit_signup">
+        {" "}
+        Or Log In
+      </button>
     </ModalWithForm>
   );
 };
