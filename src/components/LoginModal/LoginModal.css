@@ -1,0 +1,13 @@
+.modal__input_login {
+  margin-top: 15px;
+  width: 440px;
+}
+
+.modal__submit_login {
+  color: #0000004d;
+  background-color: #fff;
+  position: absolute;
+  margin-left: 140px;
+  margin-top: 185px;
+  width: 90px;
+}

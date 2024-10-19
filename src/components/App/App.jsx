@@ -14,6 +14,7 @@ import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperature
 import { getItems, addNewItem, deleteItem } from "../../utils/api.js";
 import DeleteModal from "../DeleteModal/DeleteModal.jsx";
 import RegisterModal from "../RegisterModal/RegisterModal.jsx";
+import LoginModal from "../LoginModal/LoginModal.jsx";
 
 function App() {
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
@@ -45,8 +46,12 @@ function App() {
   const handleDeleteClick = () => {
     setActiveModal("delete-modal");
   };
-  const handleSignupClick = () => {
+  const handleSignUpClick = () => {
     setActiveModal("signup-modal");
+  };
+
+  const handleLogInClick = () => {
+    setActiveModal("login-modal");
   };
 
   const closeActiveModal = () => {
@@ -127,7 +132,8 @@ function App() {
         <div className="page__content">
           <Header
             handleAddClick={handleAddClick}
-            handleSignupClick={handleSignupClick}
+            handleSignUpClick={handleSignUpClick}
+            handleLogInClick={handleLogInClick}
             weatherData={weatherData}
             // currentTemperatureUnit={currentTemperatureUnit}
             handleToggleSwitchChange={handleToggleSwitchChange}
@@ -188,6 +194,13 @@ function App() {
             activeModal={activeModal}
             closeActiveModal={closeActiveModal}
             isOpen={activeModal === "signup-modal"}
+          />
+        )}
+        {activeModal === "login-modal" && (
+          <LoginModal
+            activeModal={activeModal}
+            closeActiveModal={closeActiveModal}
+            isOpen={activeModal === "login-modal"}
           />
         )}
       </CurrentTemperatureUnitContext.Provider>
