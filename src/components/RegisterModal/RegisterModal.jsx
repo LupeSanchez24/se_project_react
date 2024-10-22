@@ -82,7 +82,7 @@ const RegisterModal = ({ closeActiveModal, onAddItem, isOpen }) => {
       <label htmlFor="email" className="modal__label ">
         Email *
         <input
-          type="text"
+          type="email"
           className={`modal__input modal__input_signup ${
             errors.email ? "modal__input_error" : ""
           }`}
@@ -96,7 +96,7 @@ const RegisterModal = ({ closeActiveModal, onAddItem, isOpen }) => {
       <label htmlFor="password" className="modal__label ">
         Password *
         <input
-          type="text"
+          type="password"
           className={`modal__input modal__input_signup ${
             errors.password ? "modal__input_error" : ""
           }`}

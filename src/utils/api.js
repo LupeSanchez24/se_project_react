@@ -30,28 +30,4 @@ function deleteItem(item) {
   });
 }
 
-/*function getItems() {
-  return fetch(`${baseUrl}/items`).then((res) => {
-    return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
-  });
-}
-
-function addNewItem({ name, imageUrl, weather }) {
-  return fetch(`${baseUrl}/items`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ name, imageUrl, weather }),
-  }).then((res) => {
-    return res.ok ? res.json() : Promise.reject(`Error: ${res.statusText}`);
-  });
-}
-
-function deleteItem(item) {
-  return fetch(`${baseUrl}/items/${item._id}`, {
-    method: "DELETE",
-    headers: { "Content-Type": "application/json" },
-  }).then((res) => {
-    return res.ok ? res.json() : Promise.reject(`Error: ${res.statusText}`);
-  });
-}*/
-export { getItems, addNewItem, deleteItem };
+export { getItems, addNewItem, deleteItem, baseUrl, checkResponse };

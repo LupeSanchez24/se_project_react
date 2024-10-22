@@ -138,29 +138,34 @@ function App() {
             // currentTemperatureUnit={currentTemperatureUnit}
             handleToggleSwitchChange={handleToggleSwitchChange}
           />
-          <Routes>
-            <Route
-              path="/"
-              element={
-                //pass clothingItems as a prop
-                <Main
-                  weatherData={weatherData}
-                  handleCardClick={handleCardClick}
-                  clothingItems={clothingItems}
-                />
-              }
-            />
-            <Route
-              path="/profile"
-              element={
-                <Profile
-                  onCardClick={handleCardClick}
-                  clothingItems={clothingItems}
-                  onAddClick={handleAddClick}
-                />
-              }
-            />
-          </Routes>
+          <AppContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  //pass clothingItems as a prop
+                  <Main
+                    weatherData={weatherData}
+                    handleCardClick={handleCardClick}
+                    clothingItems={clothingItems}
+                  />
+                }
+              />
+
+              <Route
+                path="/profile"
+                element={
+                  <ProtectedRoute>
+                    <Profile
+                      onCardClick={handleCardClick}
+                      clothingItems={clothingItems}
+                      onAddClick={handleAddClick}
+                    />
+                  </ProtectedRoute>
+                }
+              />
+            </Routes>
+          </AppContext.Provider>
 
           <Footer />
         </div>
