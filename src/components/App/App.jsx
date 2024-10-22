@@ -15,12 +15,14 @@ import { getItems, addNewItem, deleteItem } from "../../utils/api.js";
 import DeleteModal from "../DeleteModal/DeleteModal.jsx";
 import RegisterModal from "../RegisterModal/RegisterModal.jsx";
 import LoginModal from "../LoginModal/LoginModal.jsx";
+import ProtectedRoute from "../ProjectedRoute/ProtectedRoute.jsx";
 
 function App() {
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
   const [clothingItems, setClothingItems] = useState([]);
+  const [LoggedIn, setLoggedIn] = useState(false);
 
   const handleToggleSwitchChange = () => {
     if (currentTemperatureUnit === "C") setCurrentTemperatureUnit("F");
@@ -138,34 +140,33 @@ function App() {
             // currentTemperatureUnit={currentTemperatureUnit}
             handleToggleSwitchChange={handleToggleSwitchChange}
           />
-          <AppContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>
-            <Routes>
-              <Route
-                path="/"
-                element={
-                  //pass clothingItems as a prop
-                  <Main
-                    weatherData={weatherData}
-                    handleCardClick={handleCardClick}
-                    clothingItems={clothingItems}
-                  />
-                }
-              />
 
-              <Route
-                path="/profile"
-                element={
-                  <ProtectedRoute>
-                    <Profile
-                      onCardClick={handleCardClick}
-                      clothingItems={clothingItems}
-                      onAddClick={handleAddClick}
-                    />
-                  </ProtectedRoute>
-                }
-              />
-            </Routes>
-          </AppContext.Provider>
+          <Routes>
+            <Route
+              path="/"
+              element={
+                //pass clothingItems as a prop
+                <Main
+                  weatherData={weatherData}
+                  handleCardClick={handleCardClick}
+                  clothingItems={clothingItems}
+                />
+              }
+            />
+
+            <Route
+              path="/profile"
+              element={
+                <ProtectedRoute
+                  LoggedIn={LoggedIn}
+                  onCardClick={handleCardClick}
+                  clothingItems={clothingItems}
+                  onAddClick={handleAddClick}
+                  element={Profile}
+                />
+              }
+            />
+          </Routes>
 
           <Footer />
         </div>
