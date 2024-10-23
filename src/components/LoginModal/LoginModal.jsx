@@ -3,7 +3,7 @@ import close from "../../assets/close.svg";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import "../LoginModal/LoginModal.css";
 
-const LoginModal = ({ closeActiveModal, onAddItem, isOpen }) => {
+const LoginModal = ({ closeActiveModal, onAddItem, isOpen, handleLogin }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -39,10 +39,31 @@ const LoginModal = ({ closeActiveModal, onAddItem, isOpen }) => {
     setPassword("");
   };
 
-  const handleSubmit = (e) => {
+  /*const handleSubmit = (e) => {
     e.preventDefault();
     if (validateForm()) {
       onAddItem({ email, password }, resetForm);
+    }
+  };*/
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+
+    if (validateForm()) {
+      onAddItem({ email, password })
+        .then(() => {
+          return handleLogin({ email, password });
+        })
+        .catch((err) => {
+          setErrors(err.message);
+        })
+        .finally(() => {
+          setIsLoading(false);
+        });
+    } else {
+      setErrors("Form validation failed");
+      setIsLoading(false);
     }
   };
 

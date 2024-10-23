@@ -16,6 +16,7 @@ import DeleteModal from "../DeleteModal/DeleteModal.jsx";
 import RegisterModal from "../RegisterModal/RegisterModal.jsx";
 import LoginModal from "../LoginModal/LoginModal.jsx";
 import ProtectedRoute from "../ProjectedRoute/ProtectedRoute.jsx";
+import { checkToken, signIn, signUp } from "../../utils/auth.js";
 
 function App() {
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
@@ -23,6 +24,9 @@ function App() {
   const [selectedCard, setSelectedCard] = useState({});
   const [clothingItems, setClothingItems] = useState([]);
   const [LoggedIn, setLoggedIn] = useState(false);
+  const [IsLoading, setIsLoading] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [currentUser, setCurrentUser] = useState(null);
 
   const handleToggleSwitchChange = () => {
     if (currentTemperatureUnit === "C") setCurrentTemperatureUnit("F");
@@ -87,6 +91,49 @@ function App() {
       .catch((error) => {
         console.error("Error deleting item:", error);
       });
+  };
+
+  const handleRegistration = ({ username, avatar, email, password }) => {
+    api
+      .signUp(username, avatar, email, password)
+      .then(() => {
+        handleLogin({ email, password });
+      })
+      .catch(console.error);
+  };
+
+  const handleLogin = (newUser) => {
+    setIsLoading(true);
+    signIn(newUser.email, newUser.password)
+      .then((res) => {
+        console.log(res);
+        if (res.token) {
+          localStorage.setItem("jwt", res.token);
+          return checkToken(res.token);
+        } else {
+          console.error("No token in response");
+          throw new Error("No token in response");
+        }
+      })
+      .then((data) => {
+        setIsAuthenticated(true);
+        setCurrentUser(data);
+        closeActiveModal();
+        navigate("/profile");
+      })
+      .catch((error) => {
+        console.error("Error during login:", error);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  };
+
+  const handleSignout = () => {
+    localStorage.removeItem("jwt");
+    setIsAuthenticated(false);
+    setCurrentUser(null);
+    navigate("/");
   };
 
   useEffect(() => {
@@ -200,6 +247,7 @@ function App() {
             activeModal={activeModal}
             closeActiveModal={closeActiveModal}
             isOpen={activeModal === "signup-modal"}
+            handleRegistration={handleRegistration}
           />
         )}
         {activeModal === "login-modal" && (
@@ -207,6 +255,7 @@ function App() {
             activeModal={activeModal}
             closeActiveModal={closeActiveModal}
             isOpen={activeModal === "login-modal"}
+            handleLogin={handleLogin}
           />
         )}
       </CurrentTemperatureUnitContext.Provider>

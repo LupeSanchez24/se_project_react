@@ -3,7 +3,12 @@ import close from "../../assets/close.svg";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import "./RegisterModal.css";
 
-const RegisterModal = ({ closeActiveModal, onAddItem, isOpen }) => {
+const RegisterModal = ({
+  closeActiveModal,
+  onAddItem,
+  isOpen,
+  handleRegistration,
+}) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -61,6 +66,7 @@ const RegisterModal = ({ closeActiveModal, onAddItem, isOpen }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    handleRegistration();
     if (validateForm()) {
       onAddItem({ name, email, avatarUrl, password }, resetForm);
     }
