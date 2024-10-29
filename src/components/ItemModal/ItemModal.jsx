@@ -1,7 +1,20 @@
 import "./ItemModal.css";
 import close from "../../assets/white-close.svg";
 
-function ItemModal({ activeModal, card, handleCloseClick, handleDeleteClick }) {
+function ItemModal({
+  activeModal,
+  card,
+  handleCloseClick,
+  handleDeleteClick,
+  currentUser,
+  selectedCard,
+}) {
+  const isOwn = selectedCard.owner === currentUser?._id;
+
+  const itemDeleteButtonClassName = `modal__delete-btn ${
+    isOwn ? "modal__delete-btn_visible" : "modal__delete-btn_hidden"
+  }`;
+
   return (
     <div className={`modal ${activeModal === "preview" && "modal_opened"}`}>
       <div className="modal__content modal__content_type_image">
@@ -18,7 +31,7 @@ function ItemModal({ activeModal, card, handleCloseClick, handleDeleteClick }) {
           <p className="modal__weather">Weather: {card.weather}</p>
           <button
             type="button"
-            className="modal__delete-btn"
+            className={itemDeleteButtonClassName}
             onClick={handleDeleteClick}
           >
             Delete Item

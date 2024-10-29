@@ -62,13 +62,20 @@ const RegisterModal = ({
     setEmail("");
     setAvatarUrl("");
     setPassword("");
+    setErrors({ email: "", password: "", name: "", avatarUrl: "" });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    handleRegistration();
+
     if (validateForm()) {
-      onAddItem({ name, email, avatarUrl, password }, resetForm);
+      handleRegistration({ name, email, avatar: avatarUrl, password })
+        .then(() => {
+          resetForm(); // Call resetForm after successful registration
+        })
+        .catch((error) => {
+          console.error(error); // Handle the error as needed
+        });
     }
   };
 

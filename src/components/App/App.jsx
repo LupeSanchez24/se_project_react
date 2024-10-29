@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import "./App.css";
 import { coordinates, APIkey } from "../../utils/constants";
 import Header from "../Header/Header";
@@ -28,6 +28,7 @@ function App() {
   const [IsLoading, setIsLoading] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
+  const navigate = useNavigate();
 
   const handleToggleSwitchChange = () => {
     if (currentTemperatureUnit === "C") setCurrentTemperatureUnit("F");
@@ -94,18 +95,18 @@ function App() {
       });
   };
 
-  const handleRegistration = ({ username, avatar, email, password }) => {
-    api
-      .signUp(username, avatar, email, password)
-      .then(() => {
-        handleLogin({ email, password });
-      })
-      .catch(console.error);
+  const handleRegistration = ({ name, email, password, avatar }) => {
+    const userProfile = { name, email, password, avatar };
+    signUp(userProfile).then((res) => {
+      handleLogin({ email, password });
+    });
   };
 
-  const handleLogin = (newUser) => {
+  const handleLogin = ({ email, password }) => {
+    console.log("Attempting to login");
     setIsLoading(true);
-    signIn(newUser.email, newUser.password)
+
+    signIn({ email, password })
       .then((res) => {
         console.log(res);
         if (res.token) {
@@ -120,6 +121,7 @@ function App() {
         setIsAuthenticated(true);
         setCurrentUser(data);
         closeActiveModal();
+        console.log("Navigating to /profile");
         navigate("/profile");
       })
       .catch((error) => {
@@ -139,14 +141,20 @@ function App() {
 
   useEffect(() => {
     const token = localStorage.getItem("jwt");
+
     if (token) {
-      auth
-        .checkToken(token)
+      checkToken(token)
         .then((res) => {
           setLoggedIn(true);
-          setCurrentUser(res.data);
+          setCurrentUser(res);
         })
-        .catch((e) => console.error(`Token Check use effect :${e}`));
+        .catch((error) => {
+          console.error("Token validation failed", error);
+          localStorage.removeItem("jwt");
+          setLoggedIn(false);
+        });
+    } else {
+      setLoggedIn(false);
     }
   }, []);
 
@@ -201,6 +209,7 @@ function App() {
               weatherData={weatherData}
               // currentTemperatureUnit={currentTemperatureUnit}
               handleToggleSwitchChange={handleToggleSwitchChange}
+              currentUser={currentUser}
             />
 
             <Routes>
@@ -219,13 +228,15 @@ function App() {
               <Route
                 path="/profile"
                 element={
-                  <ProtectedRoute
-                    LoggedIn={LoggedIn}
-                    onCardClick={handleCardClick}
-                    clothingItems={clothingItems}
-                    onAddClick={handleAddClick}
-                    element={Profile}
-                  />
+                  <ProtectedRoute LoggedIn={LoggedIn}>
+                    <Profile
+                      onCardClick={handleCardClick}
+                      clothingItems={clothingItems}
+                      onAddClick={handleAddClick}
+                      element={Profile}
+                      currentUser={currentUser}
+                    />
+                  </ProtectedRoute>
                 }
               />
             </Routes>

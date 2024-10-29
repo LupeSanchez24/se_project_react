@@ -2,7 +2,21 @@
 import ItemCard from "../ItemCard/ItemCard";
 import "./ClothesSection.css";
 
-function ClothesSection({ onCardClick, clothingItems, onAddClick }) {
+function ClothesSection({
+  onCardClick,
+  clothingItems,
+  onAddClick,
+  currentUser,
+}) {
+  const userClothingItems = clothingItems.filter(
+    (item) => item.owner === currentUser?._id
+  );
+
+  const clothesSectionClassName = `clothes-section__items ${
+    userClothingItems.length > 0
+      ? "clothes-section__items_visible"
+      : "clothes-section__items_hidden"
+  }`;
   return (
     <div className="clothes-section">
       <div className="clothes-section__text">
@@ -12,7 +26,7 @@ function ClothesSection({ onCardClick, clothingItems, onAddClick }) {
           + Add New
         </button>
       </div>
-      <ul className="clothes-section__items">
+      <ul className={clothesSectionClassName}>
         {clothingItems.map((item) => {
           return (
             <ItemCard key={item._id} item={item} onCardClick={onCardClick} />

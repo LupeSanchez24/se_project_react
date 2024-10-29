@@ -39,31 +39,17 @@ const LoginModal = ({ closeActiveModal, onAddItem, isOpen, handleLogin }) => {
     setPassword("");
   };
 
-  /*const handleSubmit = (e) => {
-    e.preventDefault();
-    if (validateForm()) {
-      onAddItem({ email, password }, resetForm);
-    }
-  };*/
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    setIsLoading(true);
 
     if (validateForm()) {
-      onAddItem({ email, password })
+      handleLogin({ email, password })
         .then(() => {
-          return handleLogin({ email, password });
+          resetForm(); // Call resetForm after successful registration
         })
-        .catch((err) => {
-          setErrors(err.message);
-        })
-        .finally(() => {
-          setIsLoading(false);
+        .catch((error) => {
+          console.error(error); // Handle the error as needed
         });
-    } else {
-      setErrors("Form validation failed");
-      setIsLoading(false);
     }
   };
 

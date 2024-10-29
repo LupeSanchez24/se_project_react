@@ -11,6 +11,7 @@ function Header({
   weatherData,
   currentTemperatureUnit,
   handleToggleSwitchChange,
+  currentUser,
 }) {
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
@@ -53,12 +54,18 @@ function Header({
       </button>
       <Link to="/profile" className="header__link">
         <div className="header__user-container">
-          <p className="header__username">Terrence Tegegne</p>
-          <img
-            src={avatar}
-            alt="Terrence Tegegne"
-            className="header__avatar"
-          ></img>
+          <p className="header__username">{currentUser?.name}</p>
+          {currentUser?.avatar ? (
+            <img
+              src={currentUser?.avatar}
+              alt={currentUser?.name}
+              className="header__avatar"
+            />
+          ) : (
+            <div className="header__avatar-placeholder">
+              {currentUser?.name?.chartAt(0).toUpperCase()}
+            </div>
+          )}
         </div>
       </Link>
     </header>
