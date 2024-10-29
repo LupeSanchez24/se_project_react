@@ -6,7 +6,7 @@ function Profile({ onCardClick, clothingItems, onAddClick, currentUser }) {
   return (
     <div className="profile">
       <section className="profile__sidebar">
-        <SideBar />
+        <SideBar currentUser={currentUser} />
       </section>
       <section className="profile__clothing-items">
         <ClothesSection

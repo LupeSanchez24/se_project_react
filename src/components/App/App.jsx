@@ -68,6 +68,7 @@ function App() {
 
   const onAddItem = (values, resetForm, token) => {
     // console.log(values);
+
     addNewItem(values, token)
       .then((data) => {
         console.log("Received data from API:", data); // Logs the response data
@@ -121,7 +122,8 @@ function App() {
         setIsAuthenticated(true);
         setCurrentUser(data);
         closeActiveModal();
-        console.log("Navigating to /profile");
+        setLoggedIn(true);
+
         navigate("/profile");
       })
       .catch((error) => {
