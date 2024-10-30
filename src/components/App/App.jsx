@@ -66,13 +66,13 @@ function App() {
     setActiveModal("");
   };
 
-  const onAddItem = (values, resetForm, token) => {
+  const onAddItem = (values, resetForm) => {
     // console.log(values);
-
+    const token = localStorage.getItem("jwt");
     addNewItem(values, token)
       .then((data) => {
-        console.log("Received data from API:", data); // Logs the response data
-        setClothingItems([data, ...clothingItems]);
+        console.log("Received data from API:", data);
+        setClothingItems((prevItems) => [data.data, ...prevItems]);
         closeActiveModal();
         resetForm();
       })
@@ -82,7 +82,8 @@ function App() {
   };
 
   const handleDeleteItem = () => {
-    deleteItem(selectedCard)
+    const token = localStorage.getItem("jwt");
+    deleteItem(selectedCard, token)
       .then(() => {
         const newClothingItems = clothingItems.filter(
           (cardItem) => cardItem._id !== selectedCard._id
@@ -149,6 +150,7 @@ function App() {
         .then((res) => {
           setLoggedIn(true);
           setCurrentUser(res);
+          navigate("/profile");
         })
         .catch((error) => {
           console.error("Token validation failed", error);
@@ -276,6 +278,7 @@ function App() {
               closeActiveModal={closeActiveModal}
               isOpen={activeModal === "signup-modal"}
               handleRegistration={handleRegistration}
+              handleLogInClick={handleLogInClick}
             />
           )}
           {activeModal === "login-modal" && (
@@ -284,6 +287,7 @@ function App() {
               closeActiveModal={closeActiveModal}
               isOpen={activeModal === "login-modal"}
               handleLogin={handleLogin}
+              handleSignUpClick={handleSignUpClick}
             />
           )}
         </CurrentTemperatureUnitContext.Provider>

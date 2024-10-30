@@ -3,7 +3,13 @@ import close from "../../assets/close.svg";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import "../LoginModal/LoginModal.css";
 
-const LoginModal = ({ closeActiveModal, onAddItem, isOpen, handleLogin }) => {
+const LoginModal = ({
+  closeActiveModal,
+  onAddItem,
+  isOpen,
+  handleLogin,
+  handleSignUpClick,
+}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -95,7 +101,10 @@ const LoginModal = ({ closeActiveModal, onAddItem, isOpen, handleLogin }) => {
         )}
       </label>
 
-      <button type="submit" className="modal__sumbit modal__submit_login">
+      <button
+        onClick={handleSignUpClick}
+        className="modal__sumbit modal__submit_login"
+      >
         {" "}
         Or Sign Up
       </button>

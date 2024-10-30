@@ -9,11 +9,11 @@ function ClothesSection({
   currentUser,
 }) {
   const userClothingItems = clothingItems.filter(
-    (item) => item.owner === currentUser?._id
+    (item) => item?.owner === currentUser?._id
   );
 
   const clothesSectionClassName = `clothes-section__items ${
-    userClothingItems.length > 0
+    userClothingItems?.length > 0
       ? "clothes-section__items_visible"
       : "clothes-section__items_hidden"
   }`;
@@ -27,7 +27,7 @@ function ClothesSection({
         </button>
       </div>
       <ul className={clothesSectionClassName}>
-        {clothingItems.map((item) => {
+        {userClothingItems.map((item) => {
           return (
             <ItemCard key={item._id} item={item} onCardClick={onCardClick} />
           );

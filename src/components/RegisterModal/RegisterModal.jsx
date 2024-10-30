@@ -8,6 +8,7 @@ const RegisterModal = ({
   onAddItem,
   isOpen,
   handleRegistration,
+  handleLogInClick,
 }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -153,7 +154,10 @@ const RegisterModal = ({
           <span className="modal__error  ">{errors.avatarUrl}</span>
         )}
       </label>
-      <button type="submit" className="modal__sumbit modal__submit_signup">
+      <button
+        onClick={handleLogInClick}
+        className="modal__sumbit modal__submit_signup"
+      >
         {" "}
         Or Log In
       </button>

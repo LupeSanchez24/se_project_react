@@ -15,7 +15,7 @@ function getItems() {
   return request(`${baseUrl}/items`);
 }
 
-function addNewItem({ name, imageUrl, weather, token }) {
+function addNewItem({ name, imageUrl, weather }, token) {
   return request(`${baseUrl}/items`, {
     method: "POST",
     headers: {
@@ -26,10 +26,13 @@ function addNewItem({ name, imageUrl, weather, token }) {
   });
 }
 
-function deleteItem(item) {
+function deleteItem(item, token) {
   return request(`${baseUrl}/items/${item._id}`, {
     method: "DELETE",
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
   });
 }
 
