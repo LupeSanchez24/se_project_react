@@ -36,4 +36,12 @@ function deleteItem(item, token) {
   });
 }
 
-export { getItems, addNewItem, deleteItem, baseUrl, checkResponse };
+
+export {
+  getItems,
+  addNewItem,
+  deleteItem,
+  baseUrl,
+  checkResponse,
+  
+};

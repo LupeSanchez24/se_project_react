@@ -29,6 +29,20 @@ const signIn = ({ email, password }) => {
   }).then(checkResponse);
 };
 
+const updateCurrentUser = ({ name, avatar }, token) => {
+  return fetch(`${baseUrl}/users/me`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({
+      name,
+      avatar,
+    }),
+  }).then(checkResponse);
+};
+
 const checkToken = (jwt) => {
   return fetch(`${baseUrl}/users/me`, {
     method: "GET",
@@ -39,4 +53,4 @@ const checkToken = (jwt) => {
   }).then(checkResponse);
 };
 
-export { signUp, signIn, checkToken };
+export { signUp, signIn, checkToken, updateCurrentUser };

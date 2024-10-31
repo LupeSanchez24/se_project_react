@@ -16,8 +16,14 @@ import DeleteModal from "../DeleteModal/DeleteModal.jsx";
 import RegisterModal from "../RegisterModal/RegisterModal.jsx";
 import LoginModal from "../LoginModal/LoginModal.jsx";
 import ProtectedRoute from "../ProjectedRoute/ProtectedRoute.jsx";
-import { checkToken, signIn, signUp } from "../../utils/auth.js";
+import {
+  checkToken,
+  signIn,
+  signUp,
+  updateCurrentUser,
+} from "../../utils/auth.js";
 import CurrentUserContext from "../Contexts/CurrentUserContext.jsx";
+import EditProfileModal from "../EditProfileModal/EditProfileModal.jsx";
 
 function App() {
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
@@ -60,6 +66,10 @@ function App() {
 
   const handleLogInClick = () => {
     setActiveModal("login-modal");
+  };
+
+  const handleProfileChangeClick = () => {
+    setActiveModal("user-modal");
   };
 
   const closeActiveModal = () => {
@@ -132,6 +142,22 @@ function App() {
       })
       .finally(() => {
         setIsLoading(false);
+      });
+  };
+
+  const handleUpdateProfile = ({ name, avatar }) => {
+    const token = localStorage.getItem("jwt");
+
+    updateCurrentUser({ name, avatar }, token)
+      .then((data) => {
+        setCurrentUser(data);
+        closeActiveModal();
+        navigate("/profile");
+        setIsAuthenticated(true);
+        setLoggedIn(true);
+      })
+      .catch((error) => {
+        console.error("Error during update profile:", error);
       });
   };
 
@@ -239,6 +265,7 @@ function App() {
                       onAddClick={handleAddClick}
                       element={Profile}
                       currentUser={currentUser}
+                      handleProfileChangeClick={handleProfileChangeClick}
                     />
                   </ProtectedRoute>
                 }
@@ -288,6 +315,14 @@ function App() {
               isOpen={activeModal === "login-modal"}
               handleLogin={handleLogin}
               handleSignUpClick={handleSignUpClick}
+            />
+          )}
+          {activeModal === "user-modal" && (
+            <EditProfileModal
+              activeModal={activeModal}
+              closeActiveModal={closeActiveModal}
+              isOpen={activeModal === "user-modal"}
+              handleUpdateProfile={handleUpdateProfile}
             />
           )}
         </CurrentTemperatureUnitContext.Provider>

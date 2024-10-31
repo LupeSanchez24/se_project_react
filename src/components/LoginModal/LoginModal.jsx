@@ -49,7 +49,7 @@ const LoginModal = ({
     e.preventDefault();
 
     if (validateForm()) {
-      handleLogin({ email, password })
+      return handleLogin({ email, password })
         .then(() => {
           resetForm(); // Call resetForm after successful registration
         })
