@@ -150,7 +150,7 @@ function App() {
 
     updateCurrentUser({ name, avatar }, token)
       .then((data) => {
-        setCurrentUser(data);
+        setCurrentUser(data.user);
         closeActiveModal();
         navigate("/profile");
         setIsAuthenticated(true);
