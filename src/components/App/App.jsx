@@ -21,6 +21,8 @@ import {
   signIn,
   signUp,
   updateCurrentUser,
+  addCardLike,
+  removeCardLike,
 } from "../../utils/auth.js";
 import CurrentUserContext from "../Contexts/CurrentUserContext.jsx";
 import EditProfileModal from "../EditProfileModal/EditProfileModal.jsx";
@@ -34,6 +36,7 @@ function App() {
   const [IsLoading, setIsLoading] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
+
   const navigate = useNavigate();
 
   const handleToggleSwitchChange = () => {
@@ -161,6 +164,32 @@ function App() {
       });
   };
 
+  const handleCardLike = ({ id, isLiked }) => {
+    const token = localStorage.getItem("jwt");
+    // Check if this card is not currently liked
+    !isLiked
+      ? // if so, send a request to add the user's id to the card's likes array
+
+        // the first argument is the card's id
+        addCardLike(id, token)
+          .then((updatedCard) => {
+            setClothingItems((cards) =>
+              cards.map((item) => (item._id === id ? updatedCard : item))
+            );
+          })
+          .catch((err) => console.log(err))
+      : // if not, send a request to remove the user's id from the card's likes array
+
+        // the first argument is the card's id
+        removeCardLike(id, token)
+          .then((updatedCard) => {
+            setClothingItems((cards) =>
+              cards.map((item) => (item._id === id ? updatedCard : item))
+            );
+          })
+          .catch((err) => console.log(err));
+  };
+
   const handleSignout = () => {
     localStorage.removeItem("jwt");
     setIsAuthenticated(false);
@@ -251,6 +280,7 @@ function App() {
                     weatherData={weatherData}
                     handleCardClick={handleCardClick}
                     clothingItems={clothingItems}
+                    handleCardLike={handleCardLike}
                   />
                 }
               />
@@ -266,6 +296,7 @@ function App() {
                       element={Profile}
                       currentUser={currentUser}
                       handleProfileChangeClick={handleProfileChangeClick}
+                      handleCardLike={handleCardLike}
                     />
                   </ProtectedRoute>
                 }

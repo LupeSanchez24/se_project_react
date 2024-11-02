@@ -7,6 +7,7 @@ function ClothesSection({
   clothingItems,
   onAddClick,
   currentUser,
+  onCardLike,
 }) {
   const userClothingItems = clothingItems.filter(
     (item) => item?.owner === currentUser?._id
@@ -29,7 +30,12 @@ function ClothesSection({
       <ul className={clothesSectionClassName}>
         {userClothingItems.map((item) => {
           return (
-            <ItemCard key={item._id} item={item} onCardClick={onCardClick} />
+            <ItemCard
+              onCardLike={onCardLike}
+              key={item._id}
+              item={item}
+              onCardClick={onCardClick}
+            />
           );
         })}
       </ul>

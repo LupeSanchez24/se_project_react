@@ -1,5 +1,5 @@
 import { useState } from "react";
-import close from "../../assets/close.svg";
+
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
 const EditProfileModal = ({

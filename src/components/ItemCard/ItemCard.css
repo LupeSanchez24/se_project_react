@@ -26,3 +26,11 @@
   border: 1px solid;
   color: rgba(0, 0, 0, 0.3);
 }
+
+.card__like-button_active {
+  background-image: url("../../assets/like-active.svg");
+}
+
+.card__like-btn_liked {
+  background-image: url("../../assets/like.svg");
+}

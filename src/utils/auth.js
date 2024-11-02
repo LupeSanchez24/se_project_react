@@ -26,7 +26,7 @@ const signIn = ({ email, password }) => {
       email,
       password,
     }),
-  }).then(checkResponse);
+  }).then((res) => checkResponse(res));
 };
 
 const updateCurrentUser = ({ name, avatar }, token) => {
@@ -40,7 +40,7 @@ const updateCurrentUser = ({ name, avatar }, token) => {
       name,
       avatar,
     }),
-  }).then(checkResponse);
+  }).then((res) => checkResponse(res));
 };
 
 const checkToken = (jwt) => {
@@ -50,7 +50,33 @@ const checkToken = (jwt) => {
       "Content-Type": "application/json",
       Authorization: `Bearer ${jwt}`,
     },
-  }).then(checkResponse);
+  }).then((res) => checkResponse(res));
 };
 
-export { signUp, signIn, checkToken, updateCurrentUser };
+function addCardLike(id, token) {
+  return fetch(`${baseUrl}/items/${id}/likes`, {
+    method: "PUT", // Use PUT to add a like
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
+    },
+  }).then((res) => checkResponse(res));
+}
+
+function removeCardLike(id, token) {
+  return fetch(`${baseUrl}/items/${id}/likes`, {
+    method: "DELETE", // Use DELETE to remove a like
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
+    },
+  }).then((res) => checkResponse(res));
+}
+export {
+  signUp,
+  signIn,
+  checkToken,
+  updateCurrentUser,
+  addCardLike,
+  removeCardLike,
+};
