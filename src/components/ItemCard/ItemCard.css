@@ -6,6 +6,10 @@
   justify-content: center;
   margin-top: 15px;
 }
+.card__header {
+  display: flex;
+  align-items: center;
+}
 
 .card__name {
   position: absolute;
@@ -27,10 +31,11 @@
   color: rgba(0, 0, 0, 0.3);
 }
 
-.card__like-button_active {
-  background-image: url("../../assets/like-active.svg");
-}
+.card__like-btn {
+  position: absolute;
 
-.card__like-btn_liked {
-  background-image: url("../../assets/like.svg");
+  align-items: center;
+
+  margin-left: 120px;
+  margin-top: 15px;
 }

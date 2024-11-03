@@ -9,6 +9,7 @@ function Profile({
   currentUser,
   handleProfileChangeClick,
   handleCardLike,
+  handleSignout,
 }) {
   return (
     <div className="profile">
@@ -16,6 +17,7 @@ function Profile({
         <SideBar
           currentUser={currentUser}
           handleProfileChangeClick={handleProfileChangeClick}
+          handleSignout={handleSignout}
         />
       </section>
       <section className="profile__clothing-items">

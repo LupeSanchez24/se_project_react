@@ -1,6 +1,6 @@
 import avatar from "../../assets/avatar.png";
 import "./SideBar.css";
-function SideBar({ currentUser, handleProfileChangeClick }) {
+function SideBar({ currentUser, handleProfileChangeClick, handleSignout }) {
   return (
     <div className="sidebar">
       <div className="sidebar__user">
@@ -18,7 +18,9 @@ function SideBar({ currentUser, handleProfileChangeClick }) {
         >
           Change profile data
         </p>
-        <p className="sidebar__options_logout">Log out</p>
+        <p onClick={handleSignout} className="sidebar__options_logout">
+          Log out
+        </p>
       </div>
     </div>
   );
