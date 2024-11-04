@@ -2,7 +2,7 @@ import "./ItemCard.css";
 import { useContext } from "react";
 import liked from "../../assets/like-active.svg";
 import disliked from "../../assets/like.svg";
-import CurrentUserContext from "../Contexts/CurrentUserContext.jsx";
+import CurrentUserContext from "../../contexts/CurrentUserContext.js";
 
 function ItemCard({ item, onCardClick, onCardLike }) {
   const currentUser = useContext(CurrentUserContext);

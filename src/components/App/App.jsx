@@ -24,7 +24,7 @@ import {
   addCardLike,
   removeCardLike,
 } from "../../utils/auth.js";
-import CurrentUserContext from "../Contexts/CurrentUserContext.jsx";
+import CurrentUserContext from "../../contexts/CurrentUserContext.js";
 import EditProfileModal from "../EditProfileModal/EditProfileModal.jsx";
 
 function App() {
