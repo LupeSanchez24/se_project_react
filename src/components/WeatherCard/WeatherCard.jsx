@@ -21,6 +21,7 @@ function WeatherCard({ weatherData }) {
   } else {
     weatherOption = filteredOptions[0];
   }
+
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
 
   console.log(weatherOption?.imageUrl);
