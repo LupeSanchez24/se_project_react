@@ -1,11 +1,11 @@
-import { useState } from "react";
-import close from "../../assets/close.svg";
+import { useState, useEffect } from "react";
+
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import "../LoginModal/LoginModal.css";
 
 const LoginModal = ({
   closeActiveModal,
-  onAddItem,
+
   isOpen,
   handleLogin,
   handleSignUpClick,
@@ -36,6 +36,7 @@ const LoginModal = ({
     }
 
     setErrors(errors);
+
     return isValid;
   };
 
@@ -43,18 +44,25 @@ const LoginModal = ({
     setEmail("");
 
     setPassword("");
+    setErrors({ email: "", password: "" });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    handleLogin({ email, password });
-    validateForm();
 
+    handleLogin({ email, password });
     resetForm();
+    validateForm();
   };
 
   const handlePasswordChange = (e) => setPassword(e.target.value);
   const handleEmailchange = (e) => setEmail(e.target.value);
+
+  useEffect(() => {
+    if (isOpen) {
+      resetForm();
+    }
+  }, [isOpen]);
 
   return (
     <ModalWithForm
@@ -90,14 +98,14 @@ const LoginModal = ({
           value={password}
           onChange={handlePasswordChange}
         ></input>
-        {errors.email && (
+        {errors.password && (
           <span className="modal__error ">{errors.password}</span>
         )}
       </label>
 
       <button
         onClick={handleSignUpClick}
-        className="modal__sumbit modal__submit_login"
+        className=" modal__submit modal__submit_signup"
       >
         {" "}
         Or Sign Up

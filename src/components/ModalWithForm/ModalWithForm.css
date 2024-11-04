@@ -97,14 +97,14 @@
   margin-bottom: 8px;
 }
 
-.modal__sumbit {
+.modal__submit {
   font-family: "CabinetGrotesk-Bold", sans-serif;
   font-size: 16px;
   line-height: 20px;
   margin-top: 24px;
   width: 124px;
   height: 36px;
-  background-color: #0000004d;
+  background-color: #000000;
   border: 1px;
   color: #fff;
   border-radius: 4px;

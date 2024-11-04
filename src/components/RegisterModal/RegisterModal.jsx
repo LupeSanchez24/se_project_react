@@ -1,11 +1,11 @@
 import { useState } from "react";
-import close from "../../assets/close.svg";
+
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import "./RegisterModal.css";
 
 const RegisterModal = ({
   closeActiveModal,
-  onAddItem,
+
   isOpen,
   handleRegistration,
   handleLogInClick,
@@ -156,7 +156,7 @@ const RegisterModal = ({
       </label>
       <button
         onClick={handleLogInClick}
-        className="modal__sumbit modal__submit_signup"
+        className="modal__submit modal__submit_login"
       >
         {" "}
         Or Log In
