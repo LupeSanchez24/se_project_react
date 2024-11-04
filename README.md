@@ -8,6 +8,10 @@ links
 
 https://www.figma.com/design/F03bTb81Pw8IDPj5Y9rc5i/Sprint-10-%7C-WTWR?node-id=568-335&t=ApEQMoS07MlGM1YV-0
 
+backend repo
+
+https://github.com/LupeSanchez24/se_project_express.git
+
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:
