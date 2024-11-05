@@ -50,9 +50,15 @@ const LoginModal = ({
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    handleLogin({ email, password });
-    resetForm();
-    validateForm();
+    if (validateForm()) {
+      handleLogin({ email, password })
+        .then(() => {
+          resetForm(); // Call resetForm after successful registration
+        })
+        .catch((error) => {
+          console.error(error); // Handle the error as needed
+        });
+    }
   };
 
   const handlePasswordChange = (e) => setPassword(e.target.value);

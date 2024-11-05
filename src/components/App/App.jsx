@@ -32,8 +32,8 @@ function App() {
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
   const [clothingItems, setClothingItems] = useState([]);
-  const [LoggedIn, setLoggedIn] = useState(false);
-  const [IsLoading, setIsLoading] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
 
@@ -112,9 +112,13 @@ function App() {
 
   const handleRegistration = ({ name, email, password, avatar }) => {
     const userProfile = { name, email, password, avatar };
-    signUp(userProfile).then((res) => {
-      handleLogin({ email, password });
-    });
+    signUp(userProfile)
+      .then((res) => {
+        handleLogin({ email, password });
+      })
+      .catch((error) => {
+        console.error("Error during registration:", error);
+      });
   };
 
   const handleLogin = ({ email, password }) => {
@@ -255,7 +259,7 @@ function App() {
   }, [activeModal]);
 
   return (
-    <CurrentUserContext.Provider value={currentUser} LoggedIn={LoggedIn}>
+    <CurrentUserContext.Provider value={currentUser} loggedIn={loggedIn}>
       <div className="page">
         <CurrentTemperatureUnitContext.Provider
           value={{ currentTemperatureUnit, handleToggleSwitchChange }}
@@ -266,9 +270,7 @@ function App() {
               handleSignUpClick={handleSignUpClick}
               handleLogInClick={handleLogInClick}
               weatherData={weatherData}
-              // currentTemperatureUnit={currentTemperatureUnit}
               handleToggleSwitchChange={handleToggleSwitchChange}
-              currentUser={currentUser}
             />
 
             <Routes>
@@ -288,7 +290,7 @@ function App() {
               <Route
                 path="/profile"
                 element={
-                  <ProtectedRoute LoggedIn={LoggedIn}>
+                  <ProtectedRoute LoggedIn={loggedIn}>
                     <Profile
                       onCardClick={handleCardClick}
                       clothingItems={clothingItems}

@@ -51,9 +51,15 @@ const EditProfileModal = ({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    handleUpdateProfile({ name, avatar: avatarUrl });
-    validateForm();
-    resetForm();
+    if (validateForm()) {
+      handleUpdateProfile({ name, avatar: avatarUrl })
+        .then(() => {
+          resetForm(); // Call resetForm after successful registration
+        })
+        .catch((error) => {
+          console.error(error); // Handle the error as needed
+        });
+    }
   };
 
   const handleNameChange = (e) => setName(e.target.value);

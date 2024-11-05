@@ -3,6 +3,8 @@ import logo from "../../assets/logo.svg";
 import avatar from "../../assets/avatar.png";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import { Link } from "react-router-dom";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
+import { useContext } from "react";
 
 function Header({
   handleAddClick,
@@ -11,12 +13,12 @@ function Header({
   weatherData,
   currentTemperatureUnit,
   handleToggleSwitchChange,
-  currentUser,
 }) {
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",
   });
+  const currentUser = useContext(CurrentUserContext);
 
   return (
     <header className="header">
