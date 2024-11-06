@@ -12,6 +12,7 @@ const LoginModal = ({
 }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [data, setData] = useState("");
 
   const [errors, setErrors] = useState({
     email: "",
@@ -40,24 +41,11 @@ const LoginModal = ({
     return isValid;
   };
 
-  const resetForm = () => {
-    setEmail("");
-
-    setPassword("");
-    setErrors({ email: "", password: "" });
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
     if (validateForm()) {
-      handleLogin({ email, password })
-        .then(() => {
-          resetForm(); // Call resetForm after successful registration
-        })
-        .catch((error) => {
-          console.error(error); // Handle the error as needed
-        });
+      handleLogin({ email, password });
     }
   };
 
@@ -65,9 +53,7 @@ const LoginModal = ({
   const handleEmailchange = (e) => setEmail(e.target.value);
 
   useEffect(() => {
-    if (isOpen) {
-      resetForm();
-    }
+    setData({ email: "", password: "" });
   }, [isOpen]);
 
   return (
@@ -112,6 +98,7 @@ const LoginModal = ({
       <button
         onClick={handleSignUpClick}
         className=" modal__submit modal__submit_signup"
+        type="button"
       >
         {" "}
         Or Sign Up

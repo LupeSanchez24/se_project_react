@@ -1,6 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
+import { useContext } from "react";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 
 const EditProfileModal = ({
   closeActiveModal,
@@ -8,9 +10,12 @@ const EditProfileModal = ({
   isOpen,
   handleUpdateProfile,
 }) => {
+  const currentUser = useContext(CurrentUserContext);
+
   const [name, setName] = useState("");
 
   const [avatarUrl, setAvatarUrl] = useState("");
+  const [data, setData] = useState("");
 
   const [errors, setErrors] = useState({
     name: "",
@@ -52,18 +57,23 @@ const EditProfileModal = ({
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validateForm()) {
-      handleUpdateProfile({ name, avatar: avatarUrl })
-        .then(() => {
-          resetForm(); // Call resetForm after successful registration
-        })
-        .catch((error) => {
-          console.error(error); // Handle the error as needed
-        });
+      handleUpdateProfile({ name, avatar: avatarUrl });
     }
   };
 
   const handleNameChange = (e) => setName(e.target.value);
   const handleUrlChange = (e) => setAvatarUrl(e.target.value);
+
+  useEffect(() => {
+    if (currentUser) {
+      setName(currentUser.name);
+      setAvatarUrl(currentUser.avatar);
+    }
+  }, [currentUser]);
+
+  useEffect(() => {
+    setData({ name: "", avatar: "" });
+  }, [isOpen]);
 
   return (
     <ModalWithForm

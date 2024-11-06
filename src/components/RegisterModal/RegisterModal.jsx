@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import "./RegisterModal.css";
@@ -14,6 +14,7 @@ const RegisterModal = ({
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [avatarUrl, setAvatarUrl] = useState("");
+  const [data, setData] = useState("");
 
   const [errors, setErrors] = useState({
     email: "",
@@ -58,27 +59,17 @@ const RegisterModal = ({
     return isValid;
   };
 
-  const resetForm = () => {
-    setName("");
-    setEmail("");
-    setAvatarUrl("");
-    setPassword("");
-    setErrors({ email: "", password: "", name: "", avatarUrl: "" });
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
     if (validateForm()) {
-      handleRegistration({ name, email, avatar: avatarUrl, password })
-        .then(() => {
-          resetForm(); // Call resetForm after successful registration
-        })
-        .catch((error) => {
-          console.error(error); // Handle the error as needed
-        });
+      handleRegistration({ name, email, avatar: avatarUrl, password });
     }
   };
+
+  useEffect(() => {
+    setData({ name: "", email: "", avatar: "", password: "" });
+  }, [isOpen]);
 
   const handleNameChange = (e) => setName(e.target.value);
   const handleUrlChange = (e) => setAvatarUrl(e.target.value);
@@ -156,6 +147,7 @@ const RegisterModal = ({
       </label>
       <button
         onClick={handleLogInClick}
+        type="button"
         className="modal__submit modal__submit_login"
       >
         {" "}
